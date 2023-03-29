@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.barogo.test.TestDao">
+
+  <resultMap id="memberResMap" type="Member">
+    <id property="pk" column="member_pk"/>
+    <result property="id" column="member_id"/>
+    <result property="name" column="member_name"/>
+    <result property="password" column="member_password"/>
+  </resultMap>
+
+  <select id="searchTest" resultMap="memberResMap">
+    SELECT m.pk AS member_pk,
+           m.id AS member_id,
+           m.name AS member_name,
+           m.password AS member_password
+    FROM member m
+  </select>
+</mapper>

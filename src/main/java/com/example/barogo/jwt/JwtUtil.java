@@ -82,7 +82,7 @@ public class JwtUtil implements Serializable {
   }
 
   public String resolveClientToken(HttpServletRequest request) {
-    return request.getHeader("xClientToken");
+    return request.getHeader("Authorization");
   }
 
   // 토큰 만료 체크

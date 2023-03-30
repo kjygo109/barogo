@@ -26,7 +26,8 @@ public class SpringSecurityConfig {
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
     http.csrf().ignoringRequestMatchers(new AntPathRequestMatcher("/h2-console/**")).disable()
-      .authorizeHttpRequests().requestMatchers("/**").permitAll()
+      .authorizeHttpRequests().requestMatchers( "/member/**").permitAll()
+      .anyRequest().authenticated()
       .and()
       .headers()
       .addHeaderWriter(new XFrameOptionsHeaderWriter(XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN))

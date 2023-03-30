@@ -1,13 +1,12 @@
 package com.example.barogo.domain.member.dto;
 
-import com.example.barogo.domain.model.Member;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
-public class MemberDto {
+@Setter
+public class MemberLoginRequest {
 
-  private int pk;
   private String id;
-  private String name;
   private String password;
 }

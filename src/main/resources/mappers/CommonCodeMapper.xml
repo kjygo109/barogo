@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.barogo.domain.commonCode.dao.CommonCodeDao">
+
+  <resultMap id="commonCodeResMap" type="CommonCode">
+    <id property="pk" column="common_code_pk"/>
+    <result property="codeDiv" column="common_code_code_div"/>
+    <result property="codeKey" column="common_code_code_key"/>
+    <result property="codeVal" column="common_code_code_val"/>
+  </resultMap>
+
+  <select id="searchCommonCode" parameterType="CommonCodeRequestDto" resultMap="commonCodeResMap">
+    SELECT cc.pk       AS common_code_pk,
+           cc.code_div AS common_code_code_div,
+           cc.code_key AS common_code_code_key,
+           cc.code_val AS common_code_code_val
+     FROM common_code cc
+    WHERE cc.code_div = #{codeDiv}
+      AND cc.code_key = #{codeKey}
+  </select>
+</mapper>

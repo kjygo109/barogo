@@ -24,6 +24,9 @@ public class MemberServiceImpl implements MemberService {
 
   private final PasswordEncoder passwordEncoder;
 
+  /**
+   * 회원가입
+   */
   @Override
   public ApiResponse<?> joinMember(MemberJoinRequest memberJoinRequest) {
 
@@ -48,6 +51,9 @@ public class MemberServiceImpl implements MemberService {
     return new ApiResponse<>(true);
   }
 
+  /**
+   * 로그인
+   */
   @Override
   public ApiResponse<?> loginMember(MemberLoginRequest memberLoginRequest) {
 
@@ -60,6 +66,9 @@ public class MemberServiceImpl implements MemberService {
     return new ApiResponse<>(true, memberTokenresponse);
   }
 
+  /**
+   * 아이디 중복 체크
+   */
   private void checkId(Member member) {
 
     if (!Objects.isNull(memberDao.searchMemberById(member.getId()))) {
@@ -67,6 +76,9 @@ public class MemberServiceImpl implements MemberService {
     }
   }
 
+  /**
+   * 비밀번호 패턴 체크
+   */
   private void checkPassword(Member member) {
 
     String password = member.getPassword();
@@ -83,12 +95,19 @@ public class MemberServiceImpl implements MemberService {
     if (cnt < 3) throw new ApiException(MEMBER_PASSWORD_PATTEN_EX);
   }
 
+  /**
+   * 비밀번호 암호화
+   */
   private void encryptPassword(Member member) {
 
     member.setPassword(passwordEncoder.encode(member.getPassword()));
   }
 
-  private void verifyPassword(String rawPassword, String encodedPassword){
-    if(!passwordEncoder.matches(rawPassword, encodedPassword)) throw new ApiException(MEMBER_NOT_VERIFY_PASSWORD);
+  /**
+   * 비밀번호 검증
+   */
+  private void verifyPassword(String rawPassword, String encodedPassword) {
+
+    if (!passwordEncoder.matches(rawPassword, encodedPassword)) throw new ApiException(MEMBER_NOT_VERIFY_PASSWORD);
   }
 }

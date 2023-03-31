@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class JwtAuthFilter extends GenericFilterBean {
 
-  private JwtUtil jwtUtil;
+  private final JwtUtil jwtUtil;
 
   public JwtAuthFilter(JwtUtil jwtUtil) {
     this.jwtUtil = jwtUtil;

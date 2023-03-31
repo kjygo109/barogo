@@ -46,16 +46,11 @@ public class JwtUtil implements Serializable {
   }
 
 
-  // 토큰 생성
-  public static String generate(Map<String, Object> claims, String sub) {
-    return doGenerateToken(claims, sub);
-  }
-
   // Access token 생성(유효기간 5시간)
-  public static String doGenerateToken(Map<String, Object> claims, String subject) {
+  public static String generate(Map<String, Object> claims, String sub) {
     return Jwts.builder()
       .setClaims(claims)
-      .setSubject(subject)
+      .setSubject(sub)
       .setIssuedAt(new Date(System.currentTimeMillis()))
       .setExpiration(new Date(System.currentTimeMillis() + JWT_ACCESS_TOKEN_VALIDITY))
       .signWith(SignatureAlgorithm.HS512, secret).compact();

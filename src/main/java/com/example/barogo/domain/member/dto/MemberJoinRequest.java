@@ -14,9 +14,9 @@ public class MemberJoinRequest {
 
   public Member toMember() {
     return Member.builder()
-      .id(this.id)
-      .name(this.name)
-      .password(this.password)
-      .build();
+            .id(this.id)
+            .name(this.name)
+            .password(this.password)
+            .build();
   }
 }

@@ -6,6 +6,7 @@ import com.example.barogo.domain.member.dto.MemberLoginRequest;
 import com.example.barogo.domain.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,12 +18,12 @@ public class MemberController {
   private final MemberService memberServiceImpl;
 
   @PostMapping("/join")
-  public ApiResponse<?> joinMember(MemberJoinRequest memberJoinRequest) {
+  public ApiResponse<?> joinMember(@RequestBody MemberJoinRequest memberJoinRequest) {
     return memberServiceImpl.joinMember(memberJoinRequest);
   }
 
   @PostMapping("/login")
-  public ApiResponse<?> loginMember(MemberLoginRequest memberLoginRequest) {
+  public ApiResponse<?> loginMember(@RequestBody MemberLoginRequest memberLoginRequest) {
     return memberServiceImpl.loginMember(memberLoginRequest);
   }
 }

@@ -10,6 +10,7 @@ import com.example.barogo.domain.model.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -28,6 +29,7 @@ public class MemberServiceImpl implements MemberService {
    * 회원가입
    */
   @Override
+  @Transactional
   public ApiResponse<?> joinMember(MemberJoinRequest memberJoinRequest) {
 
     Member member = memberJoinRequest.toMember();
@@ -35,7 +37,7 @@ public class MemberServiceImpl implements MemberService {
     // 아이디 중복 체크
     checkId(member);
 
-    // 비밀번호 체크
+    // 비밀번호 패턴 체크
     checkPassword(member);
 
     // 비밀번호 암호화
@@ -43,6 +45,7 @@ public class MemberServiceImpl implements MemberService {
 
     try {
 
+      // member 테이블 insert
       memberDao.insertMember(member);
     } catch (Exception e) {
       throw new ApiException(MEMBER_JOIN_FAILED);
@@ -57,10 +60,13 @@ public class MemberServiceImpl implements MemberService {
   @Override
   public ApiResponse<?> loginMember(MemberLoginRequest memberLoginRequest) {
 
+    // member 객체 생성
     Member member = Optional.ofNullable(memberDao.searchMemberById(memberLoginRequest.getId())).orElseThrow(() -> new ApiException(MEMBER_NOT_FOUND));
 
+    // 비밀번호 검증
     verifyPassword(memberLoginRequest.getPassword(), member.getPassword());
 
+    // AccessToken 생성(JWT)
     MemberTokenResponse memberTokenresponse = new MemberTokenResponse(member);
 
     return new ApiResponse<>(true, memberTokenresponse);

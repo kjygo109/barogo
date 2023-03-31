@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.barogo.domain.item.dao.ItemDao">
+
+  <resultMap id="itemResMap" type="Item">
+    <id property="pk" column="item_pk"/>
+    <result property="agencyPk" column="item_agency_pk"/>
+    <result property="name" column="item_name"/>
+    <result property="price" column="item_price"/>
+  </resultMap>
+
+  <select id="searchItem" parameterType="ItemRequestDto" resultMap="itemResMap">
+    SELECT i.pk        AS item_pk,
+           i.agency_pk AS item_agency_pk,
+           i.name      AS item_name,
+           i.price     AS item_price
+    FROM item i
+    WHERE i.pk IN
+    <foreach collection="pks" item="item" open="(" close=")" separator=",">
+      #{item,jdbcType=VARCHAR}
+    </foreach>
+  </select>
+</mapper>

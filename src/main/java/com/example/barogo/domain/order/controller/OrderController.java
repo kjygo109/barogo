@@ -2,7 +2,7 @@ package com.example.barogo.domain.order.controller;
 
 import com.example.barogo.common.ApiResponse;
 import com.example.barogo.domain.order.dto.OrderInputRequest;
-import com.example.barogo.domain.order.dto.RequestOrderAddress;
+import com.example.barogo.domain.order.dto.AddressOrderRequest;
 import com.example.barogo.domain.order.dto.RetrieveOrderRequest;
 import com.example.barogo.domain.order.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -26,8 +26,8 @@ public class OrderController {
   }
 
   @PutMapping("/address")
-  public ApiResponse<?> addressModifyOrder(@RequestBody RequestOrderAddress requestOrderAddress) {
-    return orderServiceImpl.addressModifyOrder(requestOrderAddress);
+  public ApiResponse<?> addressModifyOrder(@RequestBody AddressOrderRequest addressOrderRequest) {
+    return orderServiceImpl.addressModifyOrder(addressOrderRequest);
   }
 
   @PutMapping("/status")

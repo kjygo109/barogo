@@ -6,12 +6,12 @@ import lombok.Getter;
 import static com.example.barogo.common.ApiResponseCode.*;
 
 @Getter
-public class RequestOrderAddress {
+public class AddressOrderRequest {
 
   private int orderPk;
   private String deliveryAddress;
 
-  public RequestOrderAddress validate() {
+  public AddressOrderRequest validate() {
 
     if (this.orderPk <= 0) throw new ApiException(ORDER_PK_EMPTY);
     if (this.deliveryAddress.isEmpty()) throw new ApiException(DELIVERY_ADDRESS_EMPTY);

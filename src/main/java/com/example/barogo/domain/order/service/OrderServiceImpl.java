@@ -112,19 +112,19 @@ public class OrderServiceImpl implements OrderService {
 
   @Override
   @Transactional
-  public ApiResponse<?> addressModifyOrder(RequestOrderAddress requestOrderAddress) {
+  public ApiResponse<?> addressModifyOrder(AddressOrderRequest addressOrderRequest) {
 
     // 데이터 검증
-    requestOrderAddress.validate();
+    addressOrderRequest.validate();
 
     // Order 객체 생성
     Order order = searchOrderByPk(OrderRequestDto
             .builder()
-            .orderPk(requestOrderAddress.getOrderPk())
+            .orderPk(addressOrderRequest.getOrderPk())
             .build());
 
     // 주문 주소 변경
-    updateOrderAddress(order.statusCheck().setDeliveryAddress(requestOrderAddress.getDeliveryAddress()));
+    updateOrderAddress(order.statusCheck().setDeliveryAddress(addressOrderRequest.getDeliveryAddress()));
 
     return new ApiResponse<>(true, "배달 주소가 " + order.getDeliveryAddress() + " 로 변경 됐습니다.");
   }

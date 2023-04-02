@@ -15,6 +15,9 @@
            a.name    AS agency_name,
            a.address AS agency_address
     FROM agency a
-    WHERE a.pk = #{pk}
+    WHERE a.pk IN
+    <foreach collection="pks" item="item" open="(" close=")" separator=",">
+      #{item,jdbcType=VARCHAR}
+    </foreach>
   </select>
 </mapper>

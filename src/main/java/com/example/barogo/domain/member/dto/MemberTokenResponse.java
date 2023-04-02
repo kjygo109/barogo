@@ -13,7 +13,7 @@ public class MemberTokenResponse {
   private final String accessToken;
 
   public MemberTokenResponse(Member member) {
-    this.accessToken = JwtUtil.generate(generateTokenClaims(member),member.getId());
+    this.accessToken = JwtUtil.generate(generateTokenClaims(member), member.getId());
   }
 
   private Map<String, Object> generateTokenClaims(Member member) {

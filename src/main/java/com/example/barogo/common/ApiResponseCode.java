@@ -15,9 +15,16 @@ public enum ApiResponseCode {
   DELIVERY_ADDRESS_EMPTY("DELIVERY_ADDRESS_EMPTY", "배달주소(deliveryAddress)가 없습니다."),
   ITEMS_EMPTY("ITEMS_EMPTY", "상품(ITEM)이 없습니다."),
   ITEMS_SEARCH_EX("ITEMS_SEARCH_EX", "조회되지 않는 상품이 존재합니다. items 를 확인해주세요"),
-  ORDER_FAILED("ORDER_FAILED", "주문 실패")
+  ORDER_FAILED("ORDER_FAILED", "주문 실패"),
+  DATE_FORMAT_EX("DATE_FORMAT_EX", "날짜 포맷 변환에 실패했습니다. yyyy-MM-dd HH:mm:ss 포맷(startAt, endAt)으로 조회해주세요."),
+  START_AT_EMPTY("START_AT_EMPTY", "시작날짜(startAt)가 비어있습니다."),
+  END_AT_EMPTY("END_AT_EMPTY", "종료날짜(endAt)가 비어있습니다."),
+  START_AT_END_AT_EX("START_AT_END_AT_EX", "시작날짜가 종료날짜보다 미래입니다."),
+  DATE_OVER_EX("DATE_OVER_EX", "날짜범위(3일)가 초과하였습니다."),
+  UPDATE_ORDER_ADDRESS_EX("UPDATE_ORDER_ADDRESS_EX", "주소 변경 실패"),
+  DELIVERY_STATUS_EX("DELIVERY_STATUS_EX", "배달 섭외중일때만 변경 가능합니다."),
+  ORDER_PK_EMPTY("ORDER_PK_EMPTY", "주문정보(orderPk)가 없습니다.");
 
-  ;
   private final String code;
   private final String msg;
 

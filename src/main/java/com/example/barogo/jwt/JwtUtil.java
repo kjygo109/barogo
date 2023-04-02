@@ -49,11 +49,11 @@ public class JwtUtil implements Serializable {
   // Access token 생성(유효기간 5시간)
   public static String generate(Map<String, Object> claims, String sub) {
     return Jwts.builder()
-      .setClaims(claims)
-      .setSubject(sub)
-      .setIssuedAt(new Date(System.currentTimeMillis()))
-      .setExpiration(new Date(System.currentTimeMillis() + JWT_ACCESS_TOKEN_VALIDITY))
-      .signWith(SignatureAlgorithm.HS512, secret).compact();
+            .setClaims(claims)
+            .setSubject(sub)
+            .setIssuedAt(new Date(System.currentTimeMillis()))
+            .setExpiration(new Date(System.currentTimeMillis() + JWT_ACCESS_TOKEN_VALIDITY))
+            .signWith(SignatureAlgorithm.HS512, secret).compact();
   }
 
   public static Claims getAllClaimsFromToken(String token) {

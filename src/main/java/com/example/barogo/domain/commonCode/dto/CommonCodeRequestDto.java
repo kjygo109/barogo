@@ -8,5 +8,4 @@ import lombok.Getter;
 public class CommonCodeRequestDto {
 
   private String codeDiv;
-  private String codeKey;
 }

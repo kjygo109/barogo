@@ -5,9 +5,11 @@ import com.example.barogo.domain.model.CommonCode;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @Mapper
 public interface CommonCodeDao {
 
-  CommonCode searchCommonCode(CommonCodeRequestDto commonCodeRequestDto);
+  List<CommonCode> searchCommonCode(CommonCodeRequestDto commonCodeRequestDto);
 }

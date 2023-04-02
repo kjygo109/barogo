@@ -6,7 +6,6 @@ import com.example.barogo.domain.item.dto.ItemDto;
 import com.example.barogo.domain.model.Order;
 import com.example.barogo.domain.model.OrderItem;
 import lombok.Getter;
-import lombok.Setter;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
@@ -17,7 +16,6 @@ import java.util.stream.Collectors;
 import static com.example.barogo.common.ApiResponseCode.*;
 
 @Getter
-@Setter
 public class OrderInputRequest {
 
   private int memberPk;
@@ -39,7 +37,6 @@ public class OrderInputRequest {
     if (this.memberPk <= 0) throw new ApiException(MEMBER_PK_EMPTY);
     if (!StringUtils.hasText(this.deliveryAddress)) throw new ApiException(DELIVERY_ADDRESS_EMPTY);
     if (items.isEmpty()) throw new ApiException(ITEMS_EMPTY);
-    /* todo : memberPk 조회 validation 추가 필요 */
     return this;
   }
 

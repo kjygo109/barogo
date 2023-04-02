@@ -18,4 +18,33 @@
     INSERT INTO "ORDER" (member_pk, order_at, delivery_address, delivery_status, total_price)
     VALUES (#{memberPk}, #{orderAt}, #{deliveryAddress}, #{deliveryStatus}, #{totalPrice})
   </insert>
+
+  <select id="searchOrderByMemberPk" parameterType="OrderRequestDto" resultMap="orderResMap">
+    SELECT o.pk               AS order_pk,
+           o.member_pk        AS order_member_pk,
+           o.order_at         AS order_order_at,
+           o.delivery_at      AS order_delivery_at,
+           o.delivery_address AS order_delivery_address,
+           o.delivery_status  AS order_delivery_status,
+           o.total_price      AS order_total_privce
+    FROM "ORDER" o
+    WHERE o.member_pk = #{memberPk}
+      AND o.order_at BETWEEN #{startAt} AND #{endAt}
+  </select>
+  <select id="searchOrderByPk" parameterType="OrderRequestDto" resultMap="orderResMap">
+    SELECT o.pk               AS order_pk,
+           o.member_pk        AS order_member_pk,
+           o.order_at         AS order_order_at,
+           o.delivery_at      AS order_delivery_at,
+           o.delivery_address AS order_delivery_address,
+           o.delivery_status  AS order_delivery_status,
+           o.total_price      AS order_total_privce
+    FROM "ORDER" o
+    WHERE o.pk = #{orderPk}
+  </select>
+  <update id="updateOrder" parameterType="Order">
+    UPDATE "ORDER" o
+    SET o.delivery_address = #{deliveryAddress}
+    WHERE o.pk = #{pk}
+  </update>
 </mapper>

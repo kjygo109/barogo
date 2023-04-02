@@ -18,6 +18,5 @@
            cc.code_val AS common_code_code_val
      FROM common_code cc
     WHERE cc.code_div = #{codeDiv}
-      AND cc.code_key = #{codeKey}
   </select>
 </mapper>

@@ -1,4 +1,4 @@
-package com.example.barogo.domain.agency.dto;
+package com.example.barogo.domain.orderItem.dto;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -7,7 +7,7 @@ import java.util.List;
 
 @Getter
 @Builder
-public class AgencyRequestDto {
+public class OrderItemRequestDto {
 
   private List<Integer> pks;
 }

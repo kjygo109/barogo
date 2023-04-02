@@ -6,8 +6,8 @@
 
   <resultMap id="orderItemResMap" type="OrderItem">
     <id property="pk" column="order_item_pk"/>
-    <result property="itemPk" column="order_item_item_pk"/>
     <result property="orderPk" column="order_item_order_pk"/>
+    <result property="itemPk" column="order_item_item_pk"/>
     <result property="quantity" column="order_item_quantity"/>
   </resultMap>
 
@@ -22,4 +22,16 @@
       )
     </foreach>
   </insert>
+
+  <select id="searchOrderItem" parameterType="OrderItemRequestDto" resultMap="orderItemResMap">
+    SELECT oi.pk       AS order_item_pk,
+           oi.order_pk AS order_item_order_pk,
+           oi.item_pk AS order_item_item_pk,
+           oi.quantity AS order_item_quantity
+    FROM ORDER_ITEM oi
+    WHERE oi.order_pk IN
+    <foreach collection="pks" item="item" open="(" close=")" separator=",">
+      #{item,jdbcType=VARCHAR}
+    </foreach>
+  </select>
 </mapper>
